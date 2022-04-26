@@ -1,0 +1,32 @@
+language: cpp
+os: osx
+
+sudo: false
+
+addons:
+  sonarcloud:
+    organization: "sonarsource-cfamily-examples"
+    token:
+      secure: "yEZvSPi7fhSUl8uHiY7io5sf5ggOKynBa+LQUf/tjoTveUAUjv4K1C8qXrq6gkH/Zs4ae3RfLnCDG0HSry/ZULI/Qbwu4Tkaxb+FQ6HGk4X6CR4VB/BnYVZNkB8KyILoQWC7ucM11MOY5wsE5uqC1j2XKraA4jn03WyMk13tnrXVORhGRPjP7IECAcZisZWgo9khL/KYNi7lY/WEvNef4cQ6+UlhZgH7AMsfpC0HC+TpW3N+5DUaaYxu31/VVFnXw1t18PtkzJhNpNKUmR4J8aozDzHEl22RKPCXNRUj/H6MXNIJML6QBVMgC3tjPs2OSMuzcG0F42Gc7m69PC4nQnnAlfggKYtlWFUEM4TB0DA4vxBVZwFEo7+8Z9VmLg/BaZbYuwrsQl9SDJfcaXq5dMakIeITQLpjkOOcm/Voe1eV90Ijzx+VvzOY6+2i9dOBy/xVQZiy5dzgHHBgQo/wAWDWCIWicFINggh91U/s3IfbHrq1GVoLM/6Hvr3rogxiFbT1dx/BuYCdLn2A5PguE4ZDVxrG1QbddqL4pEtuKeW651PiPoz63rNU7s5rzYs/2492CP9UbaManPnjowAZrHkmER62/I39y90RwsQO5b/NItSNJwLNSrs3r3S3vJDjgxPnoT9cf5JLaKQ+i3c9ycDDgo3pOh9M0JpAHEcfnWo="
+
+env:
+  - BUILD_WRAPPER_OUT_DIR=build_wrapper_output_folder
+
+script:
+  # Prepare the build system
+  - NUMBER_OF_PROCESSORS=$(nproc --all)
+  - mkdir build
+  - cmake -S . -B build
+  # Wraps the compilation with the Build Wrapper to generate configuration (used
+  # later by the SonarQube Scanner) into the "build_wrapper_output_folder" folder
+  - build-wrapper-macosx-x86 --out-dir "$BUILD_WRAPPER_OUT_DIR" cmake --build build/ --config Release
+  # And finally run the SonarQube analysis - read the "sonar-project.properties"
+  # file to see the specific configuration
+  - sonar-scanner -X --define sonar.cfamily.cache.enabled=true --define sonar.cfamily.cache.path=${TRAVIS_HOME}/.cfamily --define sonar.cfamily.threads=${NUMBER_OF_PROCESSORS} --define sonar.cfamily.build-wrapper-output="$BUILD_WRAPPER_OUT_DIR"
+
+cache:
+  directories:
+    - $HOME/.sonar/cache
+    # This contains the CFamily cache. According to https://docs.travis-ci.com/user/caching/#pull-request-builds-and-caches,
+    # for a PR, it will use the cache of the target branch if the branch of the PR does not already have its cache.
+    - $HOME/.cfamily

@@ -14,9 +14,7 @@ env:
   - BUILD_WRAPPER_OUT_DIR=build_wrapper_output_folder
 
 script:
-  # Prepare the build system
-  - NUMBER_OF_PROCESSORS=$(nproc --all)
-  # Wraps the compilation with the Build Wrapper to generate configuration (used
+  # Wrap the compilation with the Build Wrapper to generate configuration (used
   # later by the SonarQube Scanner) into the "build_wrapper_output_folder" folder
   - build-wrapper-macosx-x86 --out-dir "$BUILD_WRAPPER_OUT_DIR" xcodebuild -project macos-xcode.xcodeproj -configuration Release
   # And finally run the SonarQube analysis - read the "sonar-project.properties"
@@ -24,7 +22,7 @@ script:
   - >
     sonar-scanner --define sonar.cfamily.cache.enabled=true \
                   --define sonar.cfamily.cache.path=${TRAVIS_HOME}/.cfamily \
-                  --define sonar.cfamily.threads=${NUMBER_OF_PROCESSORS} \
+                  --define sonar.cfamily.threads="$(nproc --all)" \
                   --define sonar.cfamily.build-wrapper-output="$BUILD_WRAPPER_OUT_DIR"
 
 cache:

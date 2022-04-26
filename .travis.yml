@@ -22,8 +22,8 @@ script:
   # file to see the specific configuration
   - >
     sonar-scanner --define sonar.cfamily.cache.enabled=true \
-                  --define sonar.cfamily.cache.path=${TRAVIS_HOME}/.cfamily
-                  --define sonar.cfamily.threads=${NUMBER_OF_PROCESSORS}
+                  --define sonar.cfamily.cache.path=${TRAVIS_HOME}/.cfamily \
+                  --define sonar.cfamily.threads=${NUMBER_OF_PROCESSORS} \
                   --define sonar.cfamily.build-wrapper-output="$BUILD_WRAPPER_OUT_DIR"
 
 cache:

@@ -17,7 +17,7 @@ script:
   - NUMBER_OF_PROCESSORS=$(nproc --all)
   # Wraps the compilation with the Build Wrapper to generate configuration (used
   # later by the SonarQube Scanner) into the "build_wrapper_output_folder" folder
-  - build-wrapper-macosx-x86 --out-dir "$BUILD_WRAPPER_OUT_DIR" xcodebuild
+  - build-wrapper-macosx-x86 --out-dir "$BUILD_WRAPPER_OUT_DIR" xcodebuild -project macos-xcode.xcodeproj -configuration Release
   # And finally run the SonarQube analysis - read the "sonar-project.properties"
   # file to see the specific configuration
   - >

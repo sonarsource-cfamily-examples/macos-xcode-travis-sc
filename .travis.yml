@@ -1,5 +1,6 @@
 language: cpp
 os: osx
+osx_image: xcode13.3
 
 sudo: false
 

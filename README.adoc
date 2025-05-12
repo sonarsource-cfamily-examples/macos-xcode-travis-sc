@@ -1,4 +1,4 @@
-= C++ example project scanned on SonarCloud using Travis CI
+= C++ example project scanned on SonarQube Cloud using Travis CI
 // URIs:
 :uri-qg-status: https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-travis-sc
 :img-qg-status: https://sonarcloud.io/api/project_badges/measure?project=sonarsource-cfamily-examples_macos-xcode-travis-sc&metric=alert_status
@@ -8,34 +8,34 @@
 image:{img-build-status}[Build Status, link={uri-build-status}]
 image:{img-qg-status}[Quality Gate Status,link={uri-qg-status}]
 
-*This project is analysed on https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-travis-sc[SonarCloud]!*
+*This project is analysed on https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-travis-sc[SonarQube Cloud]!*
 
 
-It is very easy to analyze a C, C++ and Objective-C project with SonarCloud https://docs.travis-ci.com/user/sonarcloud/[on Travis CI]:
+It is very easy to analyze a C, C++ and Objective-C project with SonarQube Cloud https://docs.travis-ci.com/user/sonarcloud/[on Travis CI]:
 
 . Create a `sonar-project.properties` file to store your configuration
 . In your `.travis.yml` file:
 .. Activate the https://docs.travis-ci.com/user/sonarcloud/[Travis Add-on] and add it to your `.travis.yml` file:
 * Specify your GitHub `organization`
 * Add your encrypted Sonar token
-.. Wrap your compilation with the https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/#analysis-steps-using-build-wrapper[Build Wrapper]
+.. Wrap your compilation with the https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/languages/c-family/prerequisites/#using-build-wrapper[Build Wrapper]
 .. Run `sonar-scanner` later on
 
-Note: `SONAR_TOKEN` may be also configured as enviroment variable in Repository Settings of Travis CI.
+Note: `SONAR_TOKEN` may be also configured as environment variable in Repository Settings of Travis CI.
 
 You can take a look at the link:sonar-project.properties[sonar-project.properties] and link:.travis.yml[.travis.yml] to see it in practice.
 
 = Documentation
 
-- https://docs.sonarcloud.io/advanced-setup/languages/c-c-objective-c/[Documentation overview of the C, C++ and Objective-C analyzer]
+- https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/languages/c-family/overview/[C/C++/Objective-C analysis overview]
 - https://docs.travis-ci.com/user/sonarcloud/[Documentation of the SonarCloud Travis Add-on]
-- https://docs.sonarcloud.io/getting-started/github/[Documentation of using SonarCloud with GitHub]
-- https://docs.sonarcloud.io/advanced-setup/languages/c-family/prerequisites/#generating-a-compilation-database[Generating a compilation database (compile_commands.json)]
-- https://docs.sonarsource.com/sonarcloud/advanced-setup/languages/c-family/running-the-analysis/[Running the analysis in Compilation Database mode]
+- https://docs.sonarsource.com/sonarqube-cloud/getting-started/github/[Getting started with GitHub]
+- https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/languages/c-family/prerequisites/#generating-a-compilation-database[Generating a compilation database]
+- https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/languages/c-family/running-the-analysis/[Running the CFamily analysis]
 
 = macOS\XCodeBuild
 
-A build of the https://github.com/sonarsource-cfamily-examples/code[code repository] on a macOS using XCode build system.
+A build of the https://github.com/sonarsource-cfamily-examples/code[code repository] on a macOS platform using XCode build system.
 
 To build the code run from the repository root directory:
 ----
@@ -47,7 +47,7 @@ xcodebuild
 An example of a flawed C++ code. The https://github.com/sonarsource-cfamily-examples/code[code repository] can be https://github.com/sonarsource-cfamily-examples/automatic-analysis-sc[analyzed automatically], but it can also be compiled with different build systems using different CI pipelines on Linux, macOS, and Windows.
 
 The https://github.com/sonarsource-cfamily-examples/code[code repository] is forked into other repositories in https://github.com/sonarsource-cfamily-examples[this collection] to add a specific build system, platform, and CI.
-The downstream repositories are analyzed either with https://www.sonarqube.org/[SonarQube] or https://sonarcloud.io/[SonarCloud].
+The downstream repositories are analyzed either with https://www.sonarqube.org/[SonarQube Server] or https://sonarcloud.io/[SonarQube Cloud].
 
 You can find examples for:
 
@@ -74,8 +74,8 @@ Running on the following CI services:
 
 Configured for analysis on:
 
-* https://github.com/sonarsource-cfamily-examples?q=-sq[SonarQube]
-* https://github.com/sonarsource-cfamily-examples?q=-sc[SonarCloud]
+* https://github.com/sonarsource-cfamily-examples?q=-sq[SonarQube Server]
+* https://github.com/sonarsource-cfamily-examples?q=-sc[SonarQube Cloud]
 
 You can find also a few examples demonstrating:
 

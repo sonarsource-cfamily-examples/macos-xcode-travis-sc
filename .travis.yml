@@ -19,8 +19,7 @@ script:
   - build-wrapper-macosx-x86 --out-dir "$BUILD_WRAPPER_OUT_DIR" xcodebuild -project macos-xcode.xcodeproj -configuration Release
   # And finally run the SonarQube analysis - read the "sonar-project.properties"
   # file to see the specific configuration
-  - >
-    sonar-scanner --define sonar.cfamily.compile-commands="$BUILD_WRAPPER_OUT_DIR/compile_commands.json"
+  - sonar-scanner
 
 cache:
   directories:

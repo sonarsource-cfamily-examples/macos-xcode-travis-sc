@@ -1,3 +1,5 @@
+This project is archived because Travis CI stopped support for macOS starting March 31st, 2025.
+
 = C++ example project scanned on SonarCloud using Travis CI
 // URIs:
 :uri-qg-status: https://sonarcloud.io/dashboard?id=sonarsource-cfamily-examples_macos-xcode-travis-sc
